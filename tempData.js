@@ -1,5 +1,6 @@
 export default tempData = [
     {
+        id: 1,
         name: "Fest med gutta",
         color: "#24A6D9",
         todos: [
