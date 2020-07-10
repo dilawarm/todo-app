@@ -3,7 +3,6 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, FlatList, Modal, ActivityIndicator } from 'react-native';
 import {AntDesign} from '@expo/vector-icons';
 import colors from './Colors';
-import tempData from './tempData';
 import TodoList from './components/TodoList';
 import AddListModal from './components/AddListModal';
 import Fire from './Fire';
@@ -45,15 +44,15 @@ export default class App extends React.Component {
   }
 
   addList = list => {
-    this.setState({lists: [...this.state.lists, {...list, id: this.state.lists.length + 1, todos: []}]})
+    firebase.addList({
+      name: list.name,
+      color: list.color,
+      todos: []
+    });
   };
 
   updateList = list => {
-    this.setState({
-      lists: this.state.lists.map(item => {
-        return item.id === list.id ? list : item;
-      })
-    })
+    firebase.updateList(list);
   };
 
   render() {
@@ -74,9 +73,6 @@ export default class App extends React.Component {
           <AddListModal closeModal={() => this.toggleAddTodoModal()} addList={this.addList}/>
         </Modal>
 
-        <View>
-          <Text>User: {this.state.user.uid}</Text>
-        </View>
 
           <View style={{flexDirection: "row"}}>
             <View style={styles.divider} />
