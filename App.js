@@ -90,6 +90,7 @@ export default class App extends React.Component {
             <Text style={styles.add}>Add List</Text>
           </View>
 
+          
           <View style={{height: 275, paddingLeft: 32}}>
             <FlatList 
               data={this.state.lists} 
